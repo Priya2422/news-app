@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Fragment } from "react"
 import styles from './NewsDetails.module.css';
 import { useRouter } from "next/router";
+import Head from "next/head";
 function NewsDetails(props){
    const {query}= useRouter();
    const newsItem=props.news.filter(item=>item.publishedAt==query.id);
