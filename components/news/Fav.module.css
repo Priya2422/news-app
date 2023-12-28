@@ -1,0 +1,48 @@
+
+.bttns{
+    margin: 0 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .bttns button{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    cursor: pointer;
+  }
+  
+  .bttns button:hover{
+    background-color: #f3f6f9;
+    /* box-shadow: inset; */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+    transition: ease-in-out;
+    transition-duration: 100ms;
+  }
+  .bttns button[disabled]{
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+  }
+  .list {
+    padding: 0;
+    list-style: none;
+    /* margin: 1rem;  */
+    /* padding: 0; */
+    /* columns: 2; */
+  }
+  .grid{
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  @media screen and (max-width: 660px) {
+    .hehe{
+      padding: 0;
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+  
+  }

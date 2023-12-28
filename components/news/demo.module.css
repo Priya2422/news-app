@@ -1,0 +1,20 @@
+.btn{
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.button {
+    font: inherit;
+    cursor: pointer;
+    color: black;
+    border: 1px solid black;
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+}
+.button:hover,
+.button:active {
+  border-color: #30aedb;
+  color: #30aedb;
+  fill: #30aedb;
+}
