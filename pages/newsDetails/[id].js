@@ -1,19 +1,38 @@
 import NewsDetails from "../../components/news/NewsDetails";
 import axios from "axios";
 
-export default function DetailPage({articles}){
+export default function DetailPage({data}){
     
-    return  < NewsDetails news={articles} />
+    return  < NewsDetails news={data} />
 }
 export async function getServerSideProps(context){
-    const url=`https://newsapi.org/v2/everything?q=sports&pageSize=100&apiKey=f0d1949698da4a328852986a08b2e869`;
-    const response=await axios.get(url);
-    const {articles, totalResults}=response.data;
-    // console.log(totalResults);
+  let data=[];
+  let totalResults=0;
+  const options = {
+    method: 'GET',
+    url: 'https://cryptocurrency-news2.p.rapidapi.com/v1/coindesk',
+    headers: {
+      'X-RapidAPI-Key': '11a77be000mshdcf3d797cd28218p17b815jsn82823cd9a664',
+      'X-RapidAPI-Host': 'cryptocurrency-news2.p.rapidapi.com'
+    }
+  };
+  
+  try {
+    const response = await axios.request(options);
+    data=response.data.data;
+    totalResults=data.length;
     return {
       props:{
-        articles,
+        data,
+        totalResults
+      }
+    }
+  } catch (error) {
+    return {
+      props:{
+        data,
         totalResults
       }
     }
   }
+}

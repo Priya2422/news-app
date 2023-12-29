@@ -37,12 +37,12 @@ function NewsList(props) {
       <ul className={`${classView} ${classes.hehe}`}>
       {props.news.slice(0, props.visible).map((newss) => (
         <NewsItem
-          key={newss.publishedAt}
-          id={newss.publishedAt}
-          image={newss.urlToImage}
+          key={newss.createdAt}
+          id={newss.createdAt}
+          image={newss.thumbnail}
           title={newss.title}
           url={newss.url}
-          description={newss.content}
+          description={newss.description}
         />
       ))}
     </ul>

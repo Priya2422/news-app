@@ -5,16 +5,19 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 function NewsDetails(props){
    const {query}= useRouter();
-   const newsItem=props.news.filter(item=>item.publishedAt==query.id);
+   const newsItem=props.news.filter(item=>item.createdAt==query.id);
+   if(newsItem.length<0){
+    return <p>No data items to display</p>
+   }
     return <Fragment>
         <Head>
             <title>{newsItem[0].title}</title>
-            <metadata name="description" content={newsItem[0].content}/>
+            <metadata name="description" content={newsItem[0].description}/>
         </Head>
         <section className={styles.detail}>
-            <img src={newsItem[0].urlToImage} alt={'image'}/>
+            <img src={newsItem[0].thumbnail} alt={'image'}/>
             <h1>{newsItem[0].title}</h1>
-            <p>{newsItem[0].content}</p>
+            <p>{newsItem[0].description}</p>
             <Link href={newsItem[0].url} target="_blank">Click here for more details</Link>
         </section>
     </Fragment>

@@ -4,10 +4,10 @@ import classes from '../components/news/demo.module.css';
 import axios from "axios";
 import Head from "next/head";
 
- function Home({articles,totalResults}) {
+ function Home({data,totalResults}) {
   const [current,setCurrent]=useState(6);
   const loadMore=()=>{
-    if(current>=articles.length){
+    if(current>=data.length){
       setCurrent(prev=>prev-6);
     }
     else{
@@ -20,13 +20,13 @@ import Head from "next/head";
       <title>News App</title>
       <metadata name="description" content="Get latest news at next news app."/>
     </Head>
-    {totalResults>=4 && <NewsList news={articles} visible={current}/>}
+    {totalResults>=4 && <NewsList news={data} visible={current}/>}
     {totalResults>=4 && <div className={classes.btn}>
       <button 
       className={classes.button}
       onClick={loadMore} 
       type="button">
-        {current>=articles.length && current>0?'Load less':'Load More'}
+        {current>=data.length && current>0?'Load less':'Load More'}
       </button>
     </div>}
     {totalResults<4 && <p>No news items to display</p>}
@@ -35,15 +35,35 @@ import Head from "next/head";
 }
 export async function getServerSideProps({req,res}){
   // res.setHeader()
-  const url=`https://newsapi.org/v2/everything?q=sports&pageSize=100&apiKey=f0d1949698da4a328852986a08b2e869`;
-  const response=await axios.get(url);
-  const {articles, totalResults}=response.data;
-  // console.log(totalResults);
-  return {
-    props:{
-      articles,
-      totalResults
+  let data=[];
+  let totalResults=0;
+  const options = {
+    method: 'GET',
+    url: 'https://cryptocurrency-news2.p.rapidapi.com/v1/coindesk',
+    headers: {
+      'X-RapidAPI-Key': '11a77be000mshdcf3d797cd28218p17b815jsn82823cd9a664',
+      'X-RapidAPI-Host': 'cryptocurrency-news2.p.rapidapi.com'
+    }
+  };
+  
+  try {
+    const response = await axios.request(options);
+    data=response.data.data;
+    totalResults=data.length;
+    return {
+      props:{
+        data,
+        totalResults
+      }
+    }
+  } catch (error) {
+    return {
+      props:{
+        data,
+        totalResults
+      }
     }
   }
+
 }
 export default Home;

@@ -22,7 +22,6 @@ function MainNavigation() {
     setOpen(false);
   };
   const navHandler=()=>{
-    console.log('hue');
     setShowNav(prev=>!prev);
   }
   const screenSize=useScreenSize();
@@ -30,7 +29,7 @@ function MainNavigation() {
   const logoutHandler=async ()=>{
     try{
       await signout();
-    await router.replace('/');
+      await router.replace('/');
     }catch(err){
       handleClickOpen();
     }
