@@ -8,9 +8,10 @@ import { auth, db } from '@/firebase';
 import { addDoc, collection, serverTimestamp} from "firebase/firestore";
 import ErrorModal from '../ui/Modal';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 function NewsItem(props) {
   const [open, setOpen] = useState(false);
-
+  const router=useRouter();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -40,7 +41,8 @@ function NewsItem(props) {
           const resp=await addDoc(collection(db, "fav"), data);
           setItems([...items,data]);
       }catch(err){
-          console.log(err);
+        console.log(err);
+        handleClickOpen();
       }
     }
   }

@@ -6,10 +6,10 @@ function Layout(props) {
   return (
     <div>
       <AuthContextProvider>
-        {/* <FavContextProvider> */}
+        <FavContextProvider>
           <MainNavigation />
             <main className={classes.main}>{props.children}</main>
-        {/* </FavContextProvider> */}
+        </FavContextProvider>
       </AuthContextProvider>
     </div>
   );

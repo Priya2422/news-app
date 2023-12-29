@@ -37,6 +37,7 @@ function FavItem(props) {
         const arr=items.filter(item=>item.newsId!=props.id);
         setItems(arr);
         }catch(err){
+          console.log(err);
           handleClickOpen();
         }
     }
