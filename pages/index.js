@@ -5,16 +5,17 @@ import axios from "axios";
 import Head from "next/head";
 
  function Home({data,totalResults}) {
-  if(data){
-    const [current,setCurrent]=useState(6);
-    const loadMore=()=>{
-      if(current>=data.length){
-        setCurrent(prev=>prev-6);
-      }
-      else{
-        setCurrent(prev=>prev+6);
-      }
+  const [current,setCurrent]=useState(6);
+  const loadMore=()=>{
+    if(current>=data.length){
+      setCurrent(prev=>prev-6);
     }
+    else{
+      setCurrent(prev=>prev+6);
+    }
+  }
+  if(data){
+
     return (
       <>
       <Head>
