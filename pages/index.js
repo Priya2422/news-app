@@ -22,8 +22,8 @@ import Head from "next/head";
         <title>News App</title>
         <metadata name="description" content="Get latest news at next news app."/>
       </Head>
-      {totalResults>=4 && <NewsList news={data} visible={current}/>}
-      {totalResults>=4 && <div className={classes.btn}>
+      {totalResults>=6 && <NewsList news={data} visible={current}/>}
+      {totalResults>=6 && <div className={classes.btn}>
         <button 
         className={classes.button}
         onClick={loadMore} 
@@ -31,7 +31,7 @@ import Head from "next/head";
           {current>=data.length && current>0?'Load less':'Load More'}
         </button>
       </div>}
-      {totalResults<4 && <p>No news items to display</p>}
+      {totalResults<6 && <p>No news items to display</p>}
       </>
     )
   }
