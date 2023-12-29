@@ -2,7 +2,6 @@ import { useState } from "react";
 import NewsList from "../components/news/NewsList"
 import classes from '../components/news/demo.module.css';
 import axios from "axios";
-import Head from "next/head";
 
  function Home({data,totalResults}) {
   const [current,setCurrent]=useState(6);
@@ -18,10 +17,6 @@ import Head from "next/head";
 
     return (
       <>
-      <Head>
-        <title>News App</title>
-        <metadata name="description" content="Get latest news at next news app."/>
-      </Head>
       {totalResults>=6 && <NewsList news={data} visible={current}/>}
       {totalResults>=6 && <div className={classes.btn}>
         <button 
